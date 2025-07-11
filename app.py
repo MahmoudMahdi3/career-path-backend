@@ -9,10 +9,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, origins=[
-    "https://career-path-d5fd0.web.app",
-    "https://career-path-d5fd0.firebaseapp.com"
-])
+cors = CORS(app, resources={
+    r"/recommend-career": {
+        "origins": [
+            "https://career-path-d5fd0.web.app",
+            "https://career-path-d5fd0.firebaseapp.com"
+        ]
+    }
+})
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
